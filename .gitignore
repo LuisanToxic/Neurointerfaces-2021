@@ -38,3 +38,12 @@ pip-delete-this-directory.txt
 .pyre/
 .idea/
 srtip.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
