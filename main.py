@@ -5,7 +5,7 @@ import math
 import os
 
 def plotPainting(xlst, ylst):
-    graf = plit.plot(xlst, ylst)
+    plit.plot(xlst, ylst)
     plit.show()
 
 
