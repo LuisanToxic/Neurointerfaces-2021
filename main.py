@@ -4,6 +4,10 @@ from statistics import mean
 import math
 import os
 
+def plotPainting(xlst, ylst):
+    graf = plit.plot(xlst, ylst)
+    plit.show()
+
 
 file = open('data/21_5_2021_13_53_39_EEG.dat', 'r')
 
@@ -22,11 +26,10 @@ while (True):
 
 # первое сглаживание
 smoothY = savgol_filter(dataY, 51, 3)
-graf = plit.plot(dataX, smoothY)
-plit.show()
+plotPainting(dataX, smoothY)
 
 # перенос точек в одну сторону и перенос графика к нулю
-pa = 150 #pointAccuracy
+pa = 150 #PointAccuracy
 for i in range(round(smoothY.size / pa)):
     if max(smoothY[i*pa : (i+1)*pa]) - min(smoothY[i*pa : (i+1)*pa]) < 0.25:
         meanOfFunk = mean(smoothY[i*pa : (i+1)*pa])
@@ -39,8 +42,7 @@ for i in smoothY:
     else:
         centeredY.append(meanOfFunk - i)
 
-graf = plit.plot(dataX, centeredY)
-plit.show()
+plotPainting(dataX, centeredY)
 
 
 # большее сглаживание
@@ -49,11 +51,10 @@ avg = mean(centeredY)
 trigY = []
 for i in centeredY:
     trigY.append(math.exp(pow(-i, 2))-1)
-
-graf = plit.plot(dataX, trigY)
-plit.show()
+plotPainting(dataX, trigY)
 
 # второе сглаживание
 res = savgol_filter(trigY, 51, 3)
-graf = plit.plot(dataX, res)
-plit.show()
+plotPainting(dataX, res)
+
+
